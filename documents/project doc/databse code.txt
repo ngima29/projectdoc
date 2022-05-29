@@ -1,0 +1,176 @@
+CREATE DATABASE bike_sewa;
+
+use bike_sewa;
+
+
+CREATE TABLE user
+( 
+  uid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  full_name varchar(250) NOT NULL,
+  email varchar(250) NOT NULL UNIQUE,
+  phone varchar(250) NOT NULL UNIQUE ,
+  gender varchar(250) NOT NULL,
+  address varchar(250) NOT NULL,
+  password varchar(250) NOT NULL,
+  image varchar(250) ,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+select * from user;
+
+CREATE TABLE admin
+( 
+  aid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  full_name varchar(250) NOT NULL,
+  email varchar(250) NOT NULL UNIQUE,
+  phone varchar(250) NOT NULL UNIQUE ,
+  gender varchar(250) NOT NULL,
+  address varchar(250) NOT NULL,
+  password varchar(250) NOT NULL,
+  photo varchar(250),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+ select * from admin;
+ 
+insert into admin (full_name,email,phone,gender,address,password,created_at,updated_at) VALUES ("ngima sherpa","ngima11@gmail.com","9842681888","male","solukhumbu","solu",now(),now());
+select * from admin;
+insert into admin (full_name,email,phone,gender,address,password,created_at,updated_at) VALUES ("admin","admin@gmail.com","9842868111","male","pokhara","admin",now(),now());
+select * from admin;
+
+
+ select * from bike;
+  
+CREATE TABLE bike
+( 
+  bid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  company varchar(250) NOT NULL,
+  model varchar(250) NOT NULL ,
+  bike_img varchar(250) NOT NULL  ,
+  color varchar(250) NOT NULL,
+  bike_num varchar(250) NOT NULL UNIQUE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+   uid int,
+   cname varchar(255)not null,
+  cemail varchar(255)not null,
+   FOREIGN KEY (uid) REFERENCES user(uid)
+);
+
+
+
+CREATE TABLE Mechanic
+( 
+  mid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  full_name varchar(250) NOT NULL,
+  email varchar(250) NOT NULL UNIQUE,
+  phone varchar(250) NOT NULL UNIQUE ,
+  photo	varchar(250) NOT NULL  ,
+  gender varchar(250) NOT NULL,
+  address varchar(250) NOT NULL,
+  salary varchar(250) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+select * from Mechanic;
+
+select * from servicing_history;
+
+DROP TABLE servicing_history;
+
+CREATE TABLE servicing_history
+( 
+  sid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  bike_num varchar(250) NOT NULL ,
+  km int NOT NULL,
+  amount int NOT NULL,
+  servicing_at DATE,
+  parts_changed  varchar(255)  NOT NULL,
+  next_servicing DATE,
+  next_km int NOT NULL, 
+  mid int, 
+  FOREIGN KEY (mid) REFERENCES mechanic(mid),
+  scname varchar(255)not null,
+  scemail varchar(255)not null,
+   scid int, 
+   FOREIGN KEY (scid) REFERENCES user(uid)
+);
+
+
+insert into servicing_history(bike_num,km,amount,servicing_at,parts_changed,next_servicing,next_km,mid,scname,scemail) values("STATE 5 01 003 pa 2055",488,1900,now(),"break oil, break pad","2022-10-11", 5500, 1 ,"ngima sherpa", "ngima@gmail.com");
+
+select * from servicing_history;
+ select * from bike;
+ 
+CREATE TABLE onlinebooking
+( 
+  obid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  c_name varchar(250) NOT NULL,
+  c_email varchar(250) NOT NULL ,
+  bike_num varchar(250) NOT NULL ,
+  problems varchar(250),
+  booking_date varchar(250) NOT NULL ,
+  booking_time varchar(25) NOT NULL ,
+  booking_status enum('0','1'),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+   uid int, 
+   FOREIGN KEY (uid) REFERENCES user(uid),
+   bid int,
+   FOREIGN KEY (bid) REFERENCES bike(bid)
+);
+
+select * from onlinebooking ;
+
+SELECT * FROM onlinebooking where booking_status="1";
+
+CREATE TABLE userfeedback
+( 
+  ufid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  u_name varchar(250) NOT NULL,
+  u_email varchar(250) NOT NULL ,
+  Message varchar(250),
+  uid int, 
+  FOREIGN KEY (uid) REFERENCES user(uid),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+  
+  select * from userfeedback;
+  DROP TABLE userfeedback;
+  
+  
+CREATE TABLE company
+( 
+  comid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  com_name varchar(250) NOT NULL
+  );
+  
+INSERT INTO company (com_name)
+VALUES 
+("Bajaj"),
+("Yamaha"),
+("TVS");
+
+select * from company;
+  
+CREATE TABLE model
+( 
+  modid int NOT NULL PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  mod_name varchar(250) NOT NULL,
+  comid int, 
+  FOREIGN KEY (comid) REFERENCES company(comid)
+  );
+  
+  select * from model;
+  
+  INSERT INTO model (mod_name,comid)
+VALUES 
+("Avenger Street 150",1),("Avenger Street 180", 1),("Avenger Street 220", 1 ),("Discover 110", 2),("Discover 125", 1),("Discover 135", 1),
+("Discover 150", 1),("Platina 110", 1),("Pulsar 150", 1),("Pulsar 180", 1),("Pulsar 220", 1),("Pulsar NS160", 1),("Pulsar NS200", 1),
+("Pulsar RS 200", 1),("Bajaj V 12", 1),("Bajaj V 15", 1),("Dominar 200", 1),("Dominar 400", 1),
+("Yamaha FZ 25", 2),("Yamaha FZSV 20", 2),("Yamaha Fz v3", 2),("Yamaha FZS VI", 2),("Yamaha FZS V2", 2),("Yamaha MT-15", 2),
+("Yamaha Saluto RX", 2),("Yamaha YZF RI", 2),("Yamaha YZF RI", 2),("Yamaha YZF R15 S", 2),("Yamaha YZF R15 V2", 2),("Yamaha Ray ZR 113", 2),
+("Yamaha Fascino 113", 2),("Yamaha Fascino 125", 2),("NMAX 155", 2),
+("TVS Apache RR 310", 3),("TVS Apache RTR 160", 3),("TVS Apache RTR 160", 3),("TVS Apache RTR 180", 3),("TVS Apache RTR 200", 3),
+("TVS Jupiter", 3),("TVS Ntorq 125", 3),("TVS Stryker 125", 3),("TVS XL 100", 3),("TVS Stryker 125", 3);

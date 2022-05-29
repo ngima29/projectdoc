@@ -1,0 +1,13 @@
+bajaj
+{
+
+["Avenger Street 150","Avenger Street 180","Avenger Street 220","Discover 110","Discover 125","Discover 135","Discover 150","Platina 110","Pulsar 150","Pulsar 180","Pulsar 220","Pulsar NS160","Pulsar NS200","Pulsar RS 200","Bajaj V 12","Bajaj V 15","Dominar 200","Dominar 400"];
+  
+
+2 Yamaha (bike)
+
+["Yamaha FZ 25","Yamaha FZSV 20","Yamaha Fz v3","Yamaha FZS VI","Yamaha FZS V2","Yamaha MT-15","Yamaha Saluto","Yamaha Saluto RX","Yamaha YZF RI","Yamaha YZF RI","Yamaha YZF R15 S","Yamaha YZF R15 V2","Yamaha Ray ZR 113","Yamaha Ray ZR street rally 125","Yamaha Fascino 113","Yamaha Fascino 125","NMAX 155"];
+
+
+["TVS Apache RR 310","TVS Apache RTR 160","TVS Apache RTR 160","TVS Apache RTR 180","TVS Apache RTR 200","TVS Jupiter","TVS Ntorq 125","TVS Stryker 125","TVS XL 100","TVS Stryker 125"];
+
