@@ -1,0 +1,27 @@
+acbSerInp cusSerInput     obSerInp	bikeSerInput	servcSerInp	feedbSerInp	mecSerInp	admSerInp
+acbSertbl cusSertbl	obSertbl	bikeSertbl	servcSertbl	feedbSertbl	mecSertbl	admSertbl	
+
+ $('#cusInput').on("keyup", function(){
+       var cusvalue = $(this).val().toLowerCase();
+        $('#custbl tr').filter(function(){
+           $(this).toggle($(this).text().toLowerCase().indexOf(cusvalue)> -1); 
+      });
+     });  
+                                         
+  });
+
+928
+
+  <div class="mt-2">
+                                                        
+                                                                <input
+                                                                    type="text"
+                                                                    placeholder="Search Here"
+                                                                    class="form-control"
+                                                                    name="custSearch"
+                                                                    id="cusInput"
+                                                                    />
+                                                            	 <br>
+ChangePass
+ServHisSerInp
+ServHisSertbl                             523                                   </div>
